@@ -1,80 +1,75 @@
-Crop Disease Detection Web Application
+<p align="center"> <img src="https://img.shields.io/badge/Django-6.0-success?style=for-the-badge&logo=django"> <img src="https://img.shields.io/badge/TensorFlow-VGG16-orange?style=for-the-badge&logo=tensorflow"> <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python"> <img src="https://img.shields.io/badge/Status-Working-brightgreen?style=for-the-badge"> </p> <p align="center"> <b>An AI-powered Django web application to detect crop diseases from leaf images using a pretrained CNN model.</b> </p>
+✨ Overview
 
-A Django-based AI web application that detects crop diseases from leaf images using a pretrained deep learning model (VGG16).
-Users can upload or capture plant images, get instant disease predictions with confidence scores, view recommendations, and access scan history.
+Crop Disease Detection is a deep learning–based web application that helps farmers and researchers identify plant diseases from leaf images.
+The system uses a VGG16-based CNN model to classify diseases and provides confidence scores, severity levels, and treatment recommendations.
 
-🚀 Project Highlights
+🚀 Key Features
 
-✅ AI-powered crop disease detection (Potato leaf diseases)
-
-✅ Image upload and camera scan support
-
-✅ Confidence score & severity level analysis
-
-✅ Disease-specific treatment & prevention tips
-
+✅ Upload image or capture using camera
+✅ Deep Learning model (VGG16 – TensorFlow/Keras)
+✅ Disease prediction with confidence (%)
+✅ Severity level detection (Low / Moderate / High)
+✅ Disease-specific recommendations & prevention tips
 ✅ Scan history stored in database
-
-✅ Clean UI with result visualization
-
+✅ Clean & responsive UI
 ✅ Multilingual-ready (Django i18n support)
 
 🧠 Diseases Supported
 
-Potato – Early Blight
+🟢 Potato – Healthy
 
-Potato – Late Blight
+🟡 Potato – Early Blight
 
-Potato – Healthy
+🔴 Potato – Late Blight
 
-(Model can be extended to other crops & diseases)
+🔧 Model can be extended for more crops and diseases.
 
 🛠️ Tech Stack
 Layer	Technology
 Backend	Django
-ML Model	TensorFlow / Keras (VGG16)
+Deep Learning	TensorFlow / Keras
+CNN Model	VGG16
 Image Processing	Pillow, NumPy
-Database	SQLite (dev)
+Database	SQLite (Development)
 Frontend	HTML, CSS, JavaScript
-Server	Django Development Server
 📂 Project Structure
 Crop Disease Detection/
 │
 ├── manage.py
-├── db.sqlite3                  # Local database (ignored in git)
+├── db.sqlite3                # SQLite DB (ignored)
 │
-├── crop_detection/             # Django project settings
+├── crop_detection/           # Django project
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
 │
-├── detector/                   # Main Django app
-│   ├── views.py                # Core logic (ML + Django)
-│   ├── models.py               # ScanRecord model
+├── detector/                 # Main app
+│   ├── views.py              # ML + Django logic
+│   ├── models.py
 │   ├── templates/
 │   ├── static/
 │   └── migrations/
 │
-├── media/                      # Uploaded images (gitignored)
-│
-├── 1/                          # Pretrained ML models (gitignored)
+├── media/                    # Uploaded images (ignored)
+├── 1/                        # Pretrained models (ignored)
 │   └── potato_disease_vgg16.keras
 │
 ├── .gitignore
-├── README.md
+└── README.md
 
 ⚙️ Installation & Setup
-1️⃣ Clone the repository
-git clone <your-repo-url>
+1️⃣ Clone Repository
+git clone <your-github-repo-url>
 cd Crop-Disease-Detection
 
-2️⃣ Create virtual environment
+2️⃣ Create Virtual Environment
 python -m venv .venv
 
 
-Activate it:
+Activate:
 
-Windows (PowerShell)
+Windows
 
 .venv\Scripts\activate
 
@@ -83,98 +78,64 @@ Linux / macOS
 
 source .venv/bin/activate
 
-3️⃣ Install dependencies
-
-If requirements.txt exists:
-
-pip install -r requirements.txt
-
-
-Otherwise install manually:
-
+3️⃣ Install Dependencies
 pip install django tensorflow pillow numpy
 
 
-⚠️ TensorFlow requires Python ≤ 3.12
+⚠️ TensorFlow works best with Python ≤ 3.12
 
-▶️ Running the Project Locally
-Apply migrations
+▶️ Run the Project
 python manage.py migrate
-
-(Optional) Create admin user
-python manage.py createsuperuser
-
-Start development server
 python manage.py runserver
 
-Open in browser
+
+Open browser:
+
 http://127.0.0.1:8000/
 
-📸 How It Works
+🔍 How It Works
 
-User uploads or captures a leaf image
+User uploads or scans a leaf image
 
-Image is preprocessed (resize + normalization)
+Image is resized & normalized
 
-VGG16-based CNN predicts disease class
+CNN model predicts disease
 
-Confidence (%) and severity are calculated
+Confidence (%) & severity calculated
 
-Result page shows:
+Recommendations shown
 
-Disease name
+Result stored in history
 
-Confidence score
+📊 Sample Output
+Field	Example
+Disease	Potato – Late Blight
+Confidence	96.23%
+Severity	High
+Recommendation	Apply Mancozeb fungicide
+🧪 Model Information
 
-Severity level
+Model: VGG16 CNN
 
-Treatment recommendations
+Framework: TensorFlow / Keras
 
-Prevention tips
+Input Size: 224 × 224
 
-Scan result is stored in database
-
-📊 Output Example
-
-Disease: Potato – Late Blight
-
-Confidence: 96.23%
-
-Severity: High
-
-Recommendation: Apply Mancozeb fungicide immediately
-
-🧪 Model & Large Files
-
-Pretrained model files are stored in the 1/ directory
-
-These files are ignored by .gitignore due to large size
+Stored in 1/ directory (gitignored)
 
 Update model path in:
 
 detector/views.py
 
-MODEL_PATH = os.path.join(settings.BASE_DIR, '1/potato_disease_vgg16.keras')
-
-🧾 Notes
-
-media/ folder stores uploaded images (do NOT commit)
-
-SQLite is used only for development
-
-Internationalization (gettext_lazy) is already integrated
-
-Designed for college projects, demos & hackathons
-
-🚀 Deployment (Production)
+🚀 Deployment Notes
 
 For production:
 
 Set DEBUG = False
 
-Use PostgreSQL instead of SQLite
+Use PostgreSQL
 
-Serve static files using WhiteNoise or AWS S3
+Serve static files using WhiteNoise / S3
 
 Store secrets in environment variables
 
@@ -182,23 +143,25 @@ Use Gunicorn + Nginx
 
 🤝 Contributing
 
-Contributions are welcome!
+Pull requests are welcome!
 
 Fork the repo
 
-Create a feature branch
+Create feature branch
 
-Commit with clear messages
+Commit changes
 
-Open a pull request
+Open PR
 
 📄 License
 
-This project is intended for educational and academic use.
-Add a LICENSE file if you plan to open-source it.
+This project is intended for educational & academic purposes.
+Add a LICENSE file if open-sourcing.
 
 👨‍💻 Author
 
 Aditya Pawar
-AI & Data Science Enthusiast
+
+AI & Data Science
+
 Final Year Project – Crop Disease Detection 🌾
