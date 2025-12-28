@@ -1,0 +1,138 @@
+{% extends 'detector/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Upload Crop Image" %}{% endblock %}
+
+{% block content %}
+<div class="scan-page-container">
+    <h1 class="scan-header">{% trans "Upload Crop Image" %}</h1>
+    <p class="scan-subheader">{% trans "Upload a clear photo of a crop leaf for AI disease detection" %}</p>
+
+    <div class="scan-content-wrapper">
+        
+        <div class="upload-area-card">
+            <h3 class="camera-header">{% trans "Take a Photo or Upload a Leaf" %}</h3>
+
+            <div id="camera-container" class="camera-stream-container">
+                <video id="video-stream" autoplay playsinline></video>
+                <canvas id="canvas-capture" style="display:none;"></canvas>
+            </div>
+
+            <form method="POST" enctype="multipart/form-data" id="camera-upload-form" action="{% url 'detector:scan' %}" style="margin-top: 20px;">
+                {% csrf_token %}
+                
+                <input type="hidden" name="image_data" id="image-data-input">
+                
+                <input type="file" name="image_file" id="image-file-input" accept="image/*" required style="display: none;">
+                
+                <div class="camera-controls">
+                    <button type="button" id="start-camera-btn" class="btn btn-primary">
+                        <i class="fas fa-camera"></i> {% trans "Start Camera" %}
+                    </button>
+                    
+                    <button type="button" id="capture-photo-btn" class="btn btn-secondary" style="display:none;">
+                        <i class="fas fa-dot-circle"></i> {% trans "Capture Photo" %}
+                    </button>
+                    
+                    <button type="button" id="browse-file-btn" class="btn btn-green-file">
+                        <i class="fas fa-folder-open"></i> {% trans "Browse File" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="guidelines-card">
+            <h3 class="guidelines-header">{% trans "Photo Guidelines" %}</h3>
+            <ul class="guidelines-list">
+                <li><i class="fas fa-check-circle"></i> {% trans "Take clear, well-lit photos of individual leaves" %}</li>
+                <li><i class="fas fa-check-circle"></i> {% trans "Ensure the leaf fills most of the frame" %}</li>
+                <li><i class="fas fa-check-circle"></i> {% trans "Include both healthy and affected areas if visible" %}</li>
+                <li><i class="fas fa-times-circle guidelines-avoid"></i> {% trans "Avoid blurry or heavily shadowed images" %}</li>
+            </ul>
+
+            <h3 class="supported-crops-header">{% trans "Supported Crops" %}</h3>
+            <p class="supported-crops-text">
+                {% trans "Tomato, Potato, Corn, Wheat, Rice, Cotton, Soybean, and many more" %}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const video = document.getElementById('video-stream');
+    const canvas = document.getElementById('canvas-capture');
+    const startCameraBtn = document.getElementById('start-camera-btn');
+    const capturePhotoBtn = document.getElementById('capture-photo-btn');
+    const imageInputFile = document.getElementById('image-file-input'); 
+    const imageInputData = document.getElementById('image-data-input'); 
+    const cameraUploadForm = document.getElementById('camera-upload-form');
+
+    let stream = null;
+    
+    // Helper function to get translated strings in JS
+    function gettext(text) {
+        return text; // Django JS i18n setup handles this if included, but we use hardcoded text here for simplicity.
+    }
+
+    // --- 1. Start Camera Functionality (Toggle) ---
+    startCameraBtn.addEventListener('click', async () => {
+        if (stream) {
+            // Stop camera
+            stream.getTracks().forEach(track => track.stop());
+            video.srcObject = null;
+            stream = null;
+            startCameraBtn.innerHTML = '<i class="fas fa-camera"></i> {% trans "Start Camera" %}';
+            capturePhotoBtn.style.display = 'none';
+        } else {
+            try {
+                // Access the camera
+                stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+                video.srcObject = stream;
+                
+                // Show controls
+                startCameraBtn.innerHTML = '<i class="fas fa-stop-circle"></i> {% trans "Stop Camera" %}';
+                capturePhotoBtn.style.display = 'inline-block';
+            } catch (err) {
+                console.error("Error accessing camera: ", err);
+                alert("{% trans 'Could not access camera. Please check permissions.' %}");
+            }
+        }
+    });
+
+    // --- 2. Capture Photo Functionality ---
+    capturePhotoBtn.addEventListener('click', () => {
+        // Draw image onto canvas
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+        
+        // Convert to Base64 and submit
+        const imageDataURL = canvas.toDataURL('image/jpeg');
+        imageInputData.value = imageDataURL;
+        
+        // Stop the camera stream after capture
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+            video.srcObject = null;
+            stream = null;
+            startCameraBtn.innerHTML = '<i class="fas fa-camera"></i> {% trans "Start Camera" %}';
+            capturePhotoBtn.style.display = 'none';
+        }
+        
+        cameraUploadForm.submit();
+    });
+
+    // --- 3. Delegate to Traditional File Input (for 'Browse File' button) ---
+    document.getElementById('browse-file-btn').addEventListener('click', () => {
+        imageInputFile.click();
+    });
+
+    // --- 4. Submit form when file is chosen (for traditional file upload) ---
+    imageInputFile.addEventListener('change', () => {
+        cameraUploadForm.submit();
+    });
+</script>
+{% endblock extra_js %}

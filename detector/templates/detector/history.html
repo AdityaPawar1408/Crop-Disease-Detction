@@ -1,0 +1,132 @@
+{% extends 'detector/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Scan History" %}{% endblock %}
+
+{% block content %}
+<div class="history-page-container">
+
+    <div class="history-table-wrapper card">
+        <table>
+            <thead>
+                <tr>
+                    <th>{% trans "Date" %}</th>
+                    <th>{% trans "Crop Type" %}</th>
+                    <th>{% trans "Disease Detected" %}</th>
+                    <th>{% trans "Confidence" %}</th>
+                    <th>{% trans "Severity" %}</th>
+                    <th>{% trans "Action" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in history_records %}
+                <tr>
+                    <td>{{ record.analysis_date|date:"Y-m-d H:i" }}</td> 
+                    <td>{{ record.crop_detected }}</td>
+                    <td>{{ record.disease_name|cut:"Potato___" }}</td>
+                    <td>{{ record.confidence|floatformat:2 }}%</td>
+                    
+                    <td class="status-{{ record.severity|lower }}">{% trans record.severity %}</td> 
+                    
+                    <td><a href="{% url 'detector:result' %}?record_id={{ record.id }}" class="btn-view-details">{% trans "View Details" %}</a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="no-records-message">{% trans "No history records found. Start scanning new leaves!" %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <h1 class="history-header">{% trans "Full Scan History" %}</h1>
+    <p class="history-subheader">{% trans "Review all past disease detection analyses." %}</p>
+
+    
+    <a href="{% url 'detector:scan' %}" class="btn btn-primary-alt">{% trans "Start New Scan" %}</a>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* --- History Page Specific Styles --- */
+.history-page-container { 
+    max-width: 1200px; 
+    margin: 20px auto 50px auto; /* Reduced top margin */
+    padding: 20px; 
+    text-align: left; 
+}
+.history-header { 
+    font-size: 2em; 
+    margin-top: 30px; /* Added margin-top to separate from table */
+    margin-bottom: 5px;
+    text-align: center; /* Center the headers */
+}
+.history-subheader { 
+    color: #6c757d; 
+    margin-bottom: 30px; 
+    text-align: center; /* Center the headers */
+}
+.history-table-wrapper { 
+    overflow-x: auto; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+}
+
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    background: white; 
+    min-width: 800px; 
+}
+th, td { 
+    padding: 15px; 
+    border-bottom: 1px solid #f0f0f0; 
+    text-align: left;
+    font-size: 0.95em;
+}
+th { 
+    background-color: #f7f7ff; 
+    font-weight: 600; 
+    color: #333; 
+    text-transform: uppercase;
+    font-size: 0.85em;
+}
+
+/* Status Styling based on Severity */
+.status-high { color: white; background-color: #dc3545; padding: 5px 10px; border-radius: 4px; font-weight: 600; text-align: center;}
+.status-moderate { color: #333; background-color: #ffc107; padding: 5px 10px; border-radius: 4px; font-weight: 600; text-align: center;}
+.status-low { color: #333; background-color: #28a745; padding: 5px 10px; border-radius: 4px; font-weight: 600; text-align: center;}
+.status-treated { color: #28a745; font-weight: bold; }
+
+.btn-view-details { 
+    color: #28a745; 
+    text-decoration: none; 
+    font-weight: 500;
+}
+.btn-view-details:hover { text-decoration: underline; }
+.no-records-message { text-align: center; color: #6c757d; padding: 20px !important; }
+
+/* Reusing a clean button style from result.html */
+.btn-primary-alt {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f0f0f0;
+    color: #28a745;
+    border: 2px solid #28a745;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 20px;
+    /* Center the button */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    justify-content: center;
+}
+.btn-primary-alt:hover { background-color: #e9f5e9; }
+</style>
+{% endblock %}

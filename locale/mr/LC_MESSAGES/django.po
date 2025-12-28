@@ -1,0 +1,459 @@
+# Marathi (mr) translations for your Crop Disease Detection Project.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-01 08:40+0530\n"
+"PO-Revision-Date: 2025-11-01 08:50+0530\n"
+"Last-Translator: CropCare Admin <admin@cropcare.com>\n"
+"Language-Team: Marathi <mr@li.org>\n"
+"Language: mr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\detector\templates\detector\base.html:10
+#: .\detector\templates\detector\base.html:25
+msgid "CropCare"
+msgstr "पीकआरोग्य"
+
+#: .\detector\templates\detector\base.html:10
+#: .\detector\templates\detector\base.html:26
+msgid "AI Disease Detection"
+msgstr "AI रोग शोधन"
+
+#: .\detector\templates\detector\base.html:31
+msgid "Home"
+msgstr "होम"
+
+#: .\detector\templates\detector\base.html:32
+msgid "Scan"
+msgstr "स्कॅन करा"
+
+#: .\detector\templates\detector\base.html:33
+msgid "History"
+msgstr "इतिहास"
+
+#: .\detector\templates\detector\base.html:34
+msgid "Help"
+msgstr "मदत"
+
+#: .\detector\templates\detector\base.html:66
+msgid "CropCare Assistant"
+msgstr "पीकआरोग्य सहाय्यक"
+
+#: .\detector\templates\detector\base.html:72
+msgid "Hi! How can I help you with your crop health today?"
+msgstr "नमस्कार! मी आज तुमच्या पिकाच्या आरोग्यासाठी कशी मदत करू शकतो?"
+
+#: .\detector\templates\detector\base.html:77
+msgid "Ask a question..."
+msgstr "प्रश्न विचारा..."
+
+#: .\detector\templates\detector\history.html:5
+msgid "Scan History"
+msgstr "स्कॅन इतिहास"
+
+#: .\detector\templates\detector\history.html:14
+msgid "Date"
+msgstr "तारीख"
+
+#: .\detector\templates\detector\history.html:15
+msgid "Crop Type"
+msgstr "पिकाचा प्रकार"
+
+#: .\detector\templates\detector\history.html:16
+#: .\detector\templates\detector\result.html:36
+msgid "Disease Detected"
+msgstr "आढळलेला रोग"
+
+#: .\detector\templates\detector\history.html:17
+msgid "Confidence"
+msgstr "विश्वास"
+
+#: .\detector\templates\detector\history.html:18
+msgid "Severity"
+msgstr "तीव्रता"
+
+#: .\detector\templates\detector\history.html:19
+msgid "Action"
+msgstr "कृती"
+
+#: .\detector\templates\detector\history.html:32
+msgid "View Details"
+msgstr "तपशील पहा"
+
+#: .\detector\templates\detector\history.html:36
+msgid "No history records found. Start scanning new leaves!"
+msgstr "कोणतेही इतिहास रेकॉर्ड आढळले नाही. नवीन पाने स्कॅन करणे सुरू करा!"
+
+#: .\detector\templates\detector\history.html:43
+msgid "Full Scan History"
+msgstr "संपूर्ण स्कॅन इतिहास"
+
+#: .\detector\templates\detector\history.html:44
+msgid "Review all past disease detection analyses."
+msgstr "मागील सर्व रोग निदान विश्लेषणांचे पुनरावलोकन करा."
+
+#: .\detector\templates\detector\history.html:47
+msgid "Start New Scan"
+msgstr "नवीन स्कॅन सुरू करा"
+
+#: .\detector\templates\detector\index.html:5
+#: .\detector\templates\detector\index.html:10
+msgid "AI-Powered Detection"
+msgstr "AI-समर्थित निदान"
+
+#: .\detector\templates\detector\index.html:9
+msgid "Protect Your Crops with"
+msgstr "आपल्या पिकांचे रक्षण करा"
+
+#: .\detector\templates\detector\index.html:13
+msgid ""
+"Upload a photo of your crop leaf and get instant disease detection results "
+"with treatment recommendations powered by advanced AI technology."
+msgstr ""
+"आपल्या पिकाच्या पानाचा फोटो अपलोड करा आणि प्रगत AI तंत्रज्ञानाने समर्थित "
+"उपचार शिफारसींसह त्वरित रोग निदान परिणाम मिळवा."
+
+#: .\detector\templates\detector\index.html:18
+msgid "Upload Leaf Image"
+msgstr "पानाचे चित्र अपलोड करा"
+
+#: .\detector\templates\detector\index.html:22
+msgid "Take Photo"
+msgstr "फोटो घ्या"
+
+#: .\detector\templates\detector\index.html:30
+msgid "Diseases Detected"
+msgstr "आढळलेले रोग"
+
+#: .\detector\templates\detector\index.html:34
+msgid "Accuracy Rate"
+msgstr "अचूकता दर"
+
+#: .\detector\templates\detector\index.html:38
+msgid "Farmers Helped"
+msgstr "शेतकऱ्यांची मदत"
+
+#: .\detector\templates\detector\index.html:45
+msgid "How CropCare Works"
+msgstr "पीकआरोग्य कसे कार्य करते"
+
+#: .\detector\templates\detector\index.html:47
+msgid "Simple, fast, and accurate crop disease detection in three easy steps"
+msgstr "तीन सोप्या चरणांमध्ये साधे, जलद आणि अचूक पीक रोग निदान"
+
+#: .\detector\templates\detector\index.html:53
+msgid "Instant Detection"
+msgstr "झटपट निदान"
+
+#: .\detector\templates\detector\index.html:55
+msgid "Upload or capture crop images for immediate AI analysis."
+msgstr "त्वरित AI विश्लेषणासाठी पिकाचे चित्र अपलोड करा किंवा कॅप्चर करा."
+
+#: .\detector\templates\detector\index.html:60
+msgid "High Accuracy"
+msgstr "उच्च अचूकता"
+
+#: .\detector\templates\detector\index.html:62
+msgid "Advanced AI models trained on thousands of crop images."
+msgstr "हजारो पिकांच्या चित्रांवर प्रशिक्षित केलेले प्रगत AI मॉडेल."
+
+#: .\detector\templates\detector\index.html:67
+msgid "Treatment Advice"
+msgstr "उपचार सल्ला"
+
+#: .\detector\templates\detector\index.html:69
+msgid "Get personalized treatment recommendations for detected diseases."
+msgstr "आढळलेल्या रोगांसाठी वैयक्तिकृत उपचार शिफारसी मिळवा."
+
+#: .\detector\templates\detector\index.html:76
+msgid "Ready to Protect Your Crops?"
+msgstr "आपले पीक संरक्षित करण्यास तयार आहात?"
+
+#: .\detector\templates\detector\index.html:78
+msgid "Join thousands of farmers using AI to detect crop diseases early"
+msgstr "रोगांचे लवकर निदान करण्यासाठी हजारो शेतकऱ्यांमध्ये सामील व्हा"
+
+#: .\detector\templates\detector\index.html:81
+msgid "Start Scanning Now"
+msgstr "आता स्कॅनिंग सुरू करा"
+
+#: .\detector\templates\detector\result.html:5
+#: .\detector\templates\detector\result.html:9
+msgid "Disease Detection Dashboard"
+msgstr "रोग निदान डॅशबोर्ड"
+
+#: .\detector\templates\detector\result.html:10
+msgid "AI-powered analysis results for your crop"
+msgstr "आपल्या पिकासाठी AI-समर्थित विश्लेषण परिणाम"
+
+#: .\detector\templates\detector\result.html:15
+msgid "Analysis Failed"
+msgstr "विश्लेषण अयशस्वी"
+
+#: .\detector\templates\detector\result.html:17
+msgid "Please try scanning a different image."
+msgstr "कृपया एक वेगळी प्रतिमा स्कॅन करण्याचा प्रयत्न करा."
+
+#: .\detector\templates\detector\result.html:29
+msgid "Original Image"
+msgstr "मूळ प्रतिमा"
+
+#: .\detector\templates\detector\result.html:35
+msgid "Crop Detected"
+msgstr "पीक आढळले"
+
+#: .\detector\templates\detector\result.html:39
+msgid "Confidence Score"
+msgstr "विश्वास स्कोअर"
+
+#: .\detector\templates\detector\result.html:44
+msgid "Severity Level"
+msgstr "तीव्रता स्तर"
+
+#: .\detector\templates\detector\result.html:48
+msgid "Health Status"
+msgstr "आरोग्य स्थिती"
+
+#: .\detector\templates\detector\result.html:49
+msgid "Analysis Date"
+msgstr "विश्लेषण तारीख"
+
+#: .\detector\templates\detector\result.html:54
+msgid "Treatment Recommendations"
+msgstr "उपचार शिफारसी"
+
+#: .\detector\templates\detector\result.html:63
+msgid "priority"
+msgstr "प्राधान्य"
+
+#: .\detector\templates\detector\result.html:67
+msgid "No specific recommendations available."
+msgstr "कोणतीही विशिष्ट शिफारस उपलब्ध नाही."
+
+#: .\detector\templates\detector\result.html:73
+msgid "Prevention Tips"
+msgstr "प्रतिबंधक उपाय"
+
+#: .\detector\templates\detector\result.html:83
+msgid "No specific prevention tips available for this crop."
+msgstr "या पिकासाठी कोणतीही विशिष्ट प्रतिबंध टिपा उपलब्ध नाहीत."
+
+#: .\detector\templates\detector\result.html:91
+msgid "Quick Actions"
+msgstr "त्वरित क्रिया"
+
+#: .\detector\templates\detector\result.html:93
+msgid "Scan Another Leaf"
+msgstr "एक वेगळी पान स्कॅन करा"
+
+#: .\detector\templates\detector\result.html:96
+msgid "Download Report"
+msgstr "अहवाल डाउनलोड करा"
+
+#: .\detector\templates\detector\result.html:99
+msgid "Share Results"
+msgstr "परिणाम सामायिक करा"
+
+#: .\detector\templates\detector\result.html:102
+msgid "View Full History"
+msgstr "संपूर्ण इतिहास पहा"
+
+#: .\detector\templates\detector\result.html:107
+msgid "Emergency Contact"
+msgstr "आपत्कालीन संपर्क"
+
+#: .\detector\templates\detector\result.html:108
+msgid "For severe disease outbreaks or urgent farming advice:"
+msgstr "गंभीर रोग प्रादुर्भाव किंवा तातडीच्या कृषी सल्ल्यासाठी:"
+
+#: .\detector\templates\detector\result.html:109
+msgid "Contact Agricultural Expert"
+msgstr "कृषी तज्ञांशी संपर्क साधा"
+
+#: .\detector\templates\detector\result.html:110
+msgid "Available 24/7 for emergencies"
+msgstr "आपत्कालीन परिस्थितीसाठी 24/7 उपलब्ध"
+
+#: .\detector\templates\detector\result.html:114
+msgid "Disease Probability"
+msgstr "रोगाची शक्यता"
+
+#: .\detector\templates\detector\result.html:122
+msgid "Probability data available."
+msgstr "संभाव्यता डेटा उपलब्ध आहे."
+
+#: .\detector\templates\detector\scan.html:5
+#: .\detector\templates\detector\scan.html:9
+msgid "Upload Crop Image"
+msgstr "पीक प्रतिमा अपलोड करा"
+
+#: .\detector\templates\detector\scan.html:10
+msgid "Upload a clear photo of a crop leaf for AI disease detection"
+msgstr "AI रोग निदानासाठी पिकाच्या पानाचा स्पष्ट फोटो अपलोड करा"
+
+#: .\detector\templates\detector\scan.html:15
+msgid "Take a Photo or Upload a Leaf"
+msgstr "फोटो घ्या किंवा पान अपलोड करा"
+
+#: .\detector\templates\detector\scan.html:31
+#: .\detector\templates\detector\scan.html:87
+#: .\detector\templates\detector\scan.html:121
+msgid "Start Camera"
+msgstr "कॅमेरा सुरू करा"
+
+#: .\detector\templates\detector\scan.html:35
+msgid "Capture Photo"
+msgstr "फोटो कॅप्चर करा"
+
+#: .\detector\templates\detector\scan.html:39
+msgid "Browse File"
+msgstr "फाईल ब्राउझ करा"
+
+#: .\detector\templates\detector\scan.html:46
+msgid "Photo Guidelines"
+msgstr "फोटो मार्गदर्शक तत्त्वे"
+
+#: .\detector\templates\detector\scan.html:48
+msgid "Take clear, well-lit photos of individual leaves"
+msgstr "स्वतंत्र पानांचे स्पष्ट, चांगले प्रकाशित फोटो घ्या"
+
+#: .\detector\templates\detector\scan.html:49
+msgid "Ensure the leaf fills most of the frame"
+msgstr "पान फ्रेमच्या बहुतेक भागात भरलेले असल्याची खात्री करा"
+
+#: .\detector\templates\detector\scan.html:50
+msgid "Include both healthy and affected areas if visible"
+msgstr "दृश्यमान असल्यास निरोगी आणि प्रभावित दोन्ही भाग समाविष्ट करा"
+
+#: .\detector\templates\detector\scan.html:51
+msgid "Avoid blurry or heavily shadowed images"
+msgstr "अस्पष्ट किंवा जास्त गडद सावली असलेल्या चित्रांपासून दूर रहा"
+
+#: .\detector\templates\detector\scan.html:54
+msgid "Supported Crops"
+msgstr "समर्थित पिके"
+
+#: .\detector\templates\detector\scan.html:56
+msgid "Tomato, Potato, Corn, Wheat, Rice, Cotton, Soybean, and many more"
+msgstr "टोमॅटो, बटाटा, मका, गहू, तांदळ, कापूस, सोयाबीन आणि बरेच काही"
+
+#: .\detector\templates\detector\scan.html:96
+msgid "Stop Camera"
+msgstr "कॅमेरा थांबवा"
+
+#: .\detector\templates\detector\scan.html:100
+msgid "Could not access camera. Please check permissions."
+msgstr "कॅमेऱ्यात प्रवेश करता आला नाही. कृपया परवानग्या तपासा."
+
+#: .\detector\views.py:35
+msgid "The leaf is healthy. No disease detected. Keep up the good work!"
+msgstr "पान निरोगी आहे. कोणताही रोग आढळला नाही. चांगले काम चालू ठेवा!"
+
+#: .\detector\views.py:38
+msgid "Apply water regularly."
+msgstr "नियमितपणे पाणी द्या."
+
+#: .\detector\views.py:39
+msgid "Monitor plant daily for early signs of disease."
+msgstr "रोगाच्या प्रारंभिक लक्षणांसाठी दररोज पिकाचे निरीक्षण करा."
+
+#: .\detector\views.py:42
+msgid "Monitor closely for pests and new disease symptoms."
+msgstr "कीटक आणि नवीन रोग लक्षणांसाठी लक्षपूर्वक निरीक्षण करा."
+
+#: .\detector\views.py:43
+msgid "Maintain optimal soil moisture and nutrient levels."
+msgstr "मातीची सर्वोत्तम आर्द्रता आणि पोषण पातळी राखा."
+
+#: .\detector\views.py:44
+msgid "Ensure adequate spacing for good air circulation."
+msgstr "चांगल्या वायुवीजनासाठी पुरेशी जागा सुनिश्चित करा."
+
+#: .\detector\views.py:48
+msgid "Caused by fungus Alternaria solani. Symptoms: dark spots, yellowing leaves."
+msgstr "फंगस अल्टरनेरिया सोलानीमुळे होतो. लक्षणे: काळे ठिपके, पिवळ्या पानांचे."
+
+#: .\detector\views.py:51
+msgid "Apply approved copper fungicide (e.g., Chlorothalonil) immediately."
+msgstr "तत्काळ मान्यताप्राप्त तांब्याचा फंगिसाइड (उदा. क्लोरोथालोनिल) लागू करा."
+
+#: .\detector\views.py:52
+msgid "Ensure good air circulation around the plants."
+msgstr "पिकांच्या आजूबाजूच्या वायुवीजनाची चांगली खात्री करा."
+
+#: .\detector\views.py:53
+msgid "Avoid overhead watering."
+msgstr "ओव्हरहेड पाण्याचा वापर टाळा."
+
+#: .\detector\views.py:56
+msgid "Practice crop rotation every 2-3 years."
+msgstr "प्रत्येक 2-3 वर्षांनी पिकांची फेरफार करा."
+
+#: .\detector\views.py:57
+msgid "Destroy infected plant debris immediately after harvest."
+msgstr "कापणीनंतर लगेच संक्रमित वनस्पतींचे अवशेष नष्ट करा."
+
+#: .\detector\views.py:58
+msgid "Avoid working in the garden when leaves are wet."
+msgstr "पानं ओलसर असताना बागेत काम करण्यास टाळा."
+
+#: .\detector\views.py:62
+msgid "Caused by Phytophthora infestans. Symptoms: brown lesions, rotting. Urgent action required!"
+msgstr "फायटोप्थोरा इन्फेस्टन्समुळे होतो. लक्षणे: तपकिरी lesions, सडणे. तातडीची कारवाई आवश्यक आहे!"
+
+#: .\detector\views.py:65
+msgid "Immediately remove and destroy infected plant parts."
+msgstr "तत्काळ संक्रमित वनस्पतींचे भाग काढा आणि नष्ट करा."
+
+#: .\detector\views.py:66
+msgid "Apply systemic fungicide (e.g., Mancozeb)."
+msgstr "सिस्टम फंगिसाइड (उदा. मॅनकोझेब) लागू करा."
+
+#: .\detector\views.py:67
+msgid "Monitor neighboring plants closely."
+msgstr "शेजारील पिकांचे लक्षपूर्वक निरीक्षण करा."
+
+#: .\detector\views.py:70
+msgid "Use certified disease-free potato seed."
+msgstr "प्रमाणित रोगमुक्त बटाटा बियाणे वापरा."
+
+#: .\detector\views.py:71
+msgid "Apply preventive fungicide sprays during wet or humid weather."
+msgstr "ओलसर किंवा आर्द्र हवामानात प्रतिबंधात्मक फंगिसाइड स्प्रे लागू करा."
+
+#: .\detector\views.py:72
+msgid "Improve drainage and avoid excessive nitrogen fertilizer."
+msgstr "निचरा सुधारित करा आणि अति नायट्रोजन खत टाळा."
+
+#: .\detector\views.py:276
+msgid "Hi there! How can I help you today?"
+msgstr "नमस्कार! मी आज तुमची कशी मदत करू शकतो?"
+
+#: .\detector\views.py:279
+msgid "For healthy plants: Apply water regularly and monitor daily for early signs of disease."
+msgstr "निरोगी वनस्पतींसाठी: नियमितपणे पाणी द्या आणि रोगाच्या सुरुवातीच्या लक्षणांसाठी दररोज निरीक्षण करा."
+
+#: .\detector\views.py:282
+msgid "Late Blight: This is a serious disease. Immediately remove and destroy infected plant parts. Apply systemic fungicide (e.g., Mancozeb)."
+msgstr "लेट ब्लाईट: हा एक गंभीर रोग आहे. संक्रमित वनस्पतींचे भाग ताबडतोब काढून टाका आणि नष्ट करा. सिस्टिमिक फंगीसाईड (उदा. मॅनकोझेब) लावा."
+
+#: .\detector\views.py:285
+msgid "Early Blight: Apply an approved copper fungicide immediately and ensure good air circulation."
+msgstr "अर्ली ब्लाईट: मान्यताप्राप्त कॉपर फंगीसाईड ताबडतोब लावा आणि चांगली हवा खेळती राहील याची खात्री करा."
+
+#: .\detector\views.py:288
+msgid "Prevention: Use certified disease-free seeds, practice crop rotation, and apply preventive sprays during wet weather."
+msgstr "प्रतिबंध: प्रमाणित रोगमुक्त बियाणे वापरा, पीक फेरपालट करा आणि ओलसर हवामानात प्रतिबंधात्मक फवारण्या करा."
+
+#: .\detector\views.py:291
+msgid "I'm sorry, I don't understand. Please ask about potato diseases or prevention."
+msgstr "क्षमस्व, मला समजले नाही. कृपया बटाटा रोग किंवा प्रतिबंधाबद्दल विचारा."
+
+#: .\detector\templates\detector\result.html:128
+msgid "Recent Scan Activity"
+msgstr "अलीकडील स्कॅन क्रियाकलाप"

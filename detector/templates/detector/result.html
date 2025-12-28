@@ -1,0 +1,133 @@
+{% extends 'detector/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Disease Detection Dashboard" %}{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1 class="dashboard-header">{% trans "Disease Detection Dashboard" %}</h1>
+    <p class="dashboard-subheader">{% trans "AI-powered analysis results for your crop" %}</p>
+
+    {% if error %}
+        <div class="error-message">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h2>{% trans "Analysis Failed" %}</h2>
+            <p>{{ error }}</p>
+            <p>{% trans "Please try scanning a different image." %}</p>
+        </div>
+    {% else %}
+        <div class="dashboard-grid">
+            
+            <div class="left-column">
+                
+                <div class="card diagnosis-card">
+                    <div class="diagnosis-left">
+                        {% if image_url %}
+                            <div class="original-image-preview">
+                                <img src="{{ image_url }}" alt="Original Leaf Image">
+                                <span class="image-tag">{% trans "Original Image" %}</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="diagnosis-right">
+                        <p>{% trans "Crop Detected" %}: <strong>{{ crop_detected|default:"Potato" }}</strong></p>
+                        <p>{% trans "Disease Detected" %}: <strong class="disease-name-text">{{ disease_name|default:"Unknown Disease"|cut:"Potato___" }}</strong></p>
+                        
+                        <div class="confidence-bar">
+                            <p>{% trans "Confidence Score" %}</p>
+                            <h3>{{ confidence|default:"0.00" }}%</h3>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" style="width:{{ confidence|slice:":-3"|default:'0' }}%; background-color:{{ color|default:'#dc3545' }};"></div>
+                            </div>
+                            <p class="severity-tag" style="background-color:{{ color|default:'#dc3545' }};">{% trans "Severity Level" %}: {% trans severity|default:"Unknown" %}</p>
+                        </div>
+
+                        <div class="health-status">
+                            <p>{% trans "Health Status" %}: <strong style="color:{{ color|default:'#dc3545' }};">{{ disease_name|default:"Diseased"|cut:"Potato___"|yesno:"Diseased,Healthy" }}</strong></p>
+                            <p>{% trans "Analysis Date" %}: {{ analysis_date|default:'N/A' }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card treatment-card">
+                    <h2>{% trans "Treatment Recommendations" %}</h2>
+                    <ul class="recommendation-list">
+                        {% for rec in recommendations %}
+                            <li>
+                                <i class="fas fa-dot-circle rec-icon"></i> 
+                                
+                                {% trans rec.text %}
+                                
+                                <span class="priority-tag priority-{{ rec.priority }}">
+                                    {% trans rec.priority %} {% trans "priority" %}
+                                </span>
+                            </li>
+                        {% empty %}
+                            <li>{% trans "No specific recommendations available." %}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="card prevention-card">
+                    <h2>{% trans "Prevention Tips" %}</h2>
+                    <ul class="prevention-list">
+                        {% for tip in prevention_tips %}
+                            <li>
+                                <i class="fas fa-check"></i> 
+                                
+                                {% trans tip %}
+                            
+                            </li>
+                        {% empty %}
+                            <li>{% trans "No specific prevention tips available for this crop." %}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="card quick-actions-card">
+                    <h2>{% trans "Quick Actions" %}</h2>
+                    <a href="{% url 'detector:scan' %}" class="btn btn-quick-action action-scan">
+                        <i class="fas fa-redo"></i> {% trans "Scan Another Leaf" %}
+                    </a>
+                    <a href="{% url 'detector:download' %}" class="btn btn-quick-action">
+                        <i class="fas fa-download"></i> {% trans "Download Report" %}
+                    </a>
+                    <a href="{% url 'detector:share' %}" class="btn btn-quick-action">
+                        <i class="fas fa-share-alt"></i> {% trans "Share Results" %}
+                    </a>
+                    <a href="{% url 'detector:history' %}" class="btn btn-quick-action">
+                        <i class="fas fa-history"></i> {% trans "View Full History" %}
+                    </a>
+                </div>
+
+                <div class="card emergency-contact-card">
+                    <h2>{% trans "Emergency Contact" %}</h2>
+                    <p>{% trans "For severe disease outbreaks or urgent farming advice:" %}</p>
+                    <button class="btn btn-contact">{% trans "Contact Agricultural Expert" %}</button>
+                    <p class="availability">{% trans "Available 24/7 for emergencies" %}</p>
+                </div>
+
+                <div class="card data-card">
+                    <h2>{% trans "Disease Probability" %}</h2>
+                    <div class="probability-list">
+                        {% for prob in probability_data %}
+                            <p class="prob-item">
+                                <span class="prob-label">{{ prob.label|cut:"Potato___" }}:</span>
+                                <span class="prob-value">{{ prob.value|floatformat:0 }}%</span>
+                            </p>
+                        {% empty %}
+                            <p>{% trans "Probability data available." %}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                
+            </div>
+            </div>
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'detector/base.html' %}
+{% load i18n %} {# CRITICAL: Load the i18n module #}
+{% load static %} 
+
+{% block title %}{% trans "AI-Powered Detection" %}{% endblock %} 
+
+{% block content %}
+<div class="main-content-section">
+  <h1 class="slogan-main">{% trans "Protect Your Crops with" %}</h1>
+  <h1 class="slogan-ai">{% trans "AI-Powered Detection" %}</h1>
+
+  <p class="slogan-description">
+    {% trans "Upload a photo of your crop leaf and get instant disease detection results with treatment recommendations powered by advanced AI technology." %}
+  </p>
+
+  <div class="upload-form">
+    <a href="{% url 'detector:scan' %}" class="btn btn-primary">
+      <i class="fas fa-cloud-upload-alt"></i> {% trans "Upload Leaf Image" %}
+    </a>
+
+
+  </div>
+</div>
+
+<hr class="stats-separator" />
+
+<div class="stats-section">
+  <div class="stat-item">
+    <p class="stat-number">50+</p>
+    <p class="stat-label">{% trans "Diseases Detected" %}</p>
+  </div>
+  <div class="stat-item">
+    <p class="stat-number">95%</p>
+    <p class="stat-label">{% trans "Accuracy Rate" %}</p>
+  </div>
+  <div class="stat-item">
+    <p class="stat-number">10K+</p>
+    <p class="stat-label">{% trans "Farmers Helped" %}</p>
+  </div>
+</div>
+
+<hr class="section-separator" />
+
+<div class="how-it-works-section">
+  <h2 class="section-heading-main">{% trans "How CropCare Works" %}</h2>
+  <p class="section-subheading">
+    {% trans "Simple, fast, and accurate crop disease detection in three easy steps" %}
+  </p>
+
+  <div class="steps-container">
+    <div class="step-card">
+      <i class="fas fa-camera step-icon"></i>
+      <h3 class="step-title">{% trans "Instant Detection" %}</h3>
+      <p class="step-description">
+        {% trans "Upload or capture crop images for immediate AI analysis." %}
+      </p>
+    </div>
+    <div class="step-card">
+      <i class="fas fa-check-circle step-icon"></i>
+      <h3 class="step-title">{% trans "High Accuracy" %}</h3>
+      <p class="step-description">
+        {% trans "Advanced AI models trained on thousands of crop images." %}
+      </p>
+    </div>
+    <div class="step-card">
+      <i class="fas fa-leaf step-icon"></i>
+      <h3 class="step-title">{% trans "Treatment Advice" %}</h3>
+      <p class="step-description">
+        {% trans "Get personalized treatment recommendations for detected diseases." %}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="cta-footer-section">
+  <h2 class="cta-heading">{% trans "Ready to Protect Your Crops?" %}</h2>
+  <p class="cta-subheading">
+    {% trans "Join thousands of farmers using AI to detect crop diseases early" %}
+  </p>
+  <a href="{% url 'detector:index' %}" class="btn btn-cta"
+    >{% trans "Start Scanning Now" %}</a
+  >
+</div>
+
+
+{% endblock content %}

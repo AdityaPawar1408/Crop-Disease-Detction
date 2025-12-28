@@ -1,0 +1,157 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% trans "CropCare" %} | {% block title %}{% trans "AI Disease Detection" %}{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{% static 'detector/style.css' %}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    {% block extra_css %}{% endblock %}
+
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-container">
+            <i class="fas fa-leaf logo-icon"></i>
+            
+            <span class="logo-text">{% trans "CropCare" %}</span>
+            <span class="logo-subtitle">{% trans "AI Disease Detection" %}</span>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="{% url 'detector:index' %}" class="nav-item active"><i class="fas fa-home"></i> {% trans "Home" %}</a>
+            <a href="{% url 'detector:scan' %}" class="nav-item"><i class="fas fa-search"></i> {% trans "Scan" %}</a> 
+            <a href="{% url 'detector:history' %}" class="nav-item"><i class="fas fa-history"></i> {% trans "History" %}</a>
+            <a href="#" class="nav-item"><i class="fas fa-question-circle"></i> {% trans "Help" %}</a>
+        </nav>
+        
+        <form action="{% url 'set_language' %}" method="post" class="lang-switcher">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.path }}">
+            <select name="language" onchange="this.form.submit()">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                        {{ language.code|upper }}
+                    </option>
+                {% endfor %}
+            </select>
+        </form>
+    </header>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="chat-bubble" id="chat-bubble">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div class="chat-window" id="chat-window">
+        
+        <div class="chat-header">
+            {% trans "CropCare Assistant" %}
+            <span id="close-chat">&times;</span>
+        </div>
+        
+        <div class="chat-body" id="chat-body">
+            <div class="chat-message bot">
+                {% trans "Hi! How can I help you with your crop health today?" %}
+            </div>
+        </div>
+        
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="{% trans 'Ask a question...' %}">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    {% block extra_js %}
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get all the DOM elements for the chatbot
+        const chatBubble = document.getElementById('chat-bubble');
+        const chatWindow = document.getElementById('chat-window');
+        const closeChat = document.getElementById('close-chat');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+        const chatBody = document.getElementById('chat-body');
+        
+        // Get the Django URLs and CSRF token
+        const chatApiUrl = "{% url 'detector:chat_api' %}";
+        const csrfToken = "{{ csrf_token }}"; // This CSRF token is for the chat form
+
+        // --- 1. Toggle Chat Window ---
+        chatBubble.addEventListener('click', () => {
+            chatWindow.style.display = 'flex';
+            chatBubble.style.display = 'none';
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatWindow.style.display = 'none';
+            chatBubble.style.display = 'block';
+        });
+
+        // --- 2. Function to Send Message ---
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message === "") return;
+
+            // Display user's message
+            appendMessage(message, 'user');
+            chatInput.value = "";
+            
+            // Send message to Django backend
+            fetch(chatApiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': csrfToken // Send CSRF token for security
+                },
+                body: 'message=' + encodeURIComponent(message)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display bot's reply
+                if (data.reply) {
+                    appendMessage(data.reply, 'bot');
+                } else {
+                    appendMessage('Error: ' + data.error, 'bot');
+                }
+            })
+            .catch(error => {
+                console.error('Chat error:', error);
+                appendMessage('{% trans "Sorry, I am having trouble connecting." %}', 'bot');
+            });
+        }
+
+        // --- 3. Helper function to add messages to the window ---
+        function appendMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('chat-message', sender);
+            messageDiv.textContent = text;
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight; // Auto-scroll to bottom
+        }
+
+        // --- 4. Event Listeners for sending ---
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    });
+    </script>
+    {% endblock extra_js %}
+    
+</body>
+</html>
